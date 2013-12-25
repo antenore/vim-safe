@@ -2,6 +2,7 @@ VimSafe - A VIM Password Safe (Vault) like tool
 ===============================================
 
 ***MPORTANT***: VimSafe has been not netested enough and I'm still working hard to improve it.
+
 ***WARNING***: An encrypted text file, were some of the fields are well known, it's easily breakable.
 
 If you want to help (and/or teach me your Vim wizardry), you are more than welcome.
