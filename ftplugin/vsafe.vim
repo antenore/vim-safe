@@ -19,21 +19,23 @@
 " along with VimSafe.  If not, see <http://www.gnu.org/licenses/>.
 " }}}
 "=============================================================================
-if exists("b:did_ftplugin")
-     finish
- endif
-let b:did_ftplugin = 1
+if exists('b:did_ftplugin')
+  finish
+else
+  let b:did_ftplugin = 1
+endif
 
-autocmd Filetype vsafe call SetVSafeOptions()
-function! SetVSafeOptions()
-    set      viminfo=
-    setlocal cm=blowfish
-    setlocal noswapfile
-    setlocal nobackup
-    setlocal nowritebackup
-    setlocal bufhidden=wipe
-    setlocal tw=0
-    setlocal fdm=indent
-    setlocal foldclose=all
-    setlocal colorcolumn=0
-endfunction
+setlocal viminfo=
+setlocal cm=blowfish
+setlocal noswapfile
+setlocal nobackup
+setlocal nowritebackup
+setlocal bufhidden=wipe
+setlocal tw=0
+setlocal fdm=indent
+setlocal foldclose=all
+setlocal colorcolumn=0
+
+let b:undo_ftplugin = "setlocal noswapfile< nobackup< nowritebackup<
+    \ bufhidden< tw< fdm< foldclose< colorcolumn< "
+
