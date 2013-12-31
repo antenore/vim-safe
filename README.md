@@ -49,3 +49,10 @@ When you open a vsafe file all the elements, except the Groups/Subgroups, are fo
   9 +--  4 lines: User: "merlin"--------------------------------
   ```
 
+Mappings
+---
+
+ * **< F4 >** To add a new entry (at the moment only manual position)
+ * **< Tab >** To move forward to the next field
+ * **< S-Tab >** To move backwards to the previous field
+ * **< CR >** To exit from insert mode
