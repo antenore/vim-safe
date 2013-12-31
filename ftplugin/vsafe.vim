@@ -70,9 +70,24 @@ function! AddVsafeEntry()
     call s:NewVsafeEntry()
     call s:PlaceCursor('{USER}')
 endfunction " }}}2 ==== end of function s:AddVsafeEntry ========================
+" {{{2 ==== NextField ==========================================================
+function! NextField (back)
+    if a:back != 'bck'
+        let bckflag = ''
+    else
+        let bckflag = 'b'
+    endif
+    call search('^\s\(\w*:\)\s".', bckflag. 'ew')
+    if foldclosed('.') >= 1
+        :foldopen
+    endif
+endfunction  }}}2 ==== end of function NextField ===============================
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
+map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
+map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
+imap <buffer> <CR> <Esc>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
 if exists('b:undo_ftplugin')
