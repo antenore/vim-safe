@@ -40,6 +40,7 @@ setlocal tw=0
 setlocal fdm=indent
 setlocal foldclose=all
 setlocal colorcolumn=0
+setlocal foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g')
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
 " {{{2 ==== s:NewVsafeEntry ====================================================
