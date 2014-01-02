@@ -19,6 +19,17 @@
 " along with VimSafe.  If not, see <http://www.gnu.org/licenses/>.
 " }}}1
 "===============================================================================
+"{{{1 ==== TODO: ===============================================================
+"{{{2 ==== Copy and Paste using the clipboard
+" - Commands
+"   qaq                                 " Clean reg a
+"   /"\(\zs.*\ze\)"/y a                 |" Search and yank in reg a
+"   let @+ = @a                         " Put reg a in Clipboard (reg +)
+"
+"   This does not work on my "work" vim because it's not compiled with 
+"   +xterm_clipboard
+"}}}2
+"}}}1
 " {{{1 ==== Initialization =====================================================
 if exists('b:did_ftplugin')
   finish
