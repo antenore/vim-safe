@@ -88,6 +88,8 @@ endfunction  }}}2 ==== end of function NextField ===============================
 map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
 map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
 map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
+" This is to sort the headers leaving untouched the content
+map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 imap <buffer> <CR> <Esc>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
