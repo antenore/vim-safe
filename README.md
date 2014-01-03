@@ -40,6 +40,8 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities (blowf
 
     > Exit from insert mode with <CR>
 
+### Overview ###
+
 The text in the vsafe file has to be formatted in this way:
 
 ``` vsafe
