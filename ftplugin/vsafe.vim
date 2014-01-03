@@ -22,12 +22,15 @@
 "{{{1 ==== TODO: ===============================================================
 "{{{2 ==== Copy and Paste using the clipboard
 " - Commands
-"   qaq                                 " Clean reg a
-"   /"\(\zs.*\ze\)"/y a                 |" Search and yank in reg a
-"   let @+ = @a                         " Put reg a in Clipboard (reg +)
+"   quq                                        " Clean reg u
+"   :/^\sUser:\s"\(\zs.\{-}\ze\)"$/y u        |" Yank Username in registry u
+"   let @+ = @u                                " Put reg u in Clipboard (reg +)
+"   qpq                                        " Clean reg p
+"   :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p    |" Yank Password in registry p
+"   let @+ = @p                                " Put reg p in Clipboard (reg +)
 "
-"   This does not work on my "work" vim because it's not compiled with 
-"   +xterm_clipboard
+"   WARNING: This does not work if vim it's not compiled with +xterm_clipboard
+"   WARNING: yank copy the whole line, looking for alternative
 "}}}2
 "}}}1
 " {{{1 ==== Initialization =====================================================
@@ -52,6 +55,7 @@ setlocal fdm=indent
 setlocal foldclose=all
 setlocal colorcolumn=0
 setlocal foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g')
+setlocal clipboard=unnamedplus
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
 " {{{2 ==== s:NewVsafeEntry ====================================================
@@ -96,11 +100,17 @@ function! NextField (back)
 endfunction  }}}2 ==== end of function NextField ===============================
 " }}}1
 " {{{1 ==== Mappings ===========================================================
+" Copy into the system clipboard
+map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
+map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
+"map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
+" Add new entry
 map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
-map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
-map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
 " This is to sort the headers leaving untouched the content
 map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
+" Motion
+map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
+map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
 imap <buffer> <CR> <Esc>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
