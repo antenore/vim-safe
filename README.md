@@ -19,7 +19,14 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities (blowf
     
     > TODO: Allow external backend like GPG and OpenSSL
 
-*   WIP: Insert new Item (almost manually)
+*   Auto open/close folded elements
+*   Motion
+
+    > Move with <Tab> <S-Tab>
+
+    > Exit from insert mode with <CR>
+
+*   WIP: Insert new Item
 
     > Place at the right place
     
@@ -34,11 +41,6 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities (blowf
     
     > TODO: Add external clipboard tool support (i.e. xclip)
 
-*   Motion
-
-    > Move with <Tab> <S-Tab>
-
-    > Exit from insert mode with <CR>
 
 ### Overview ###
 
