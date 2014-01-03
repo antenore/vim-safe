@@ -72,9 +72,9 @@ When you open a vsafe file all the elements, except the Groups/Subgroups, are fo
   4 ›   Password: *
   5 ›   Url: "http://www.aabbccddeeff.it/what/if/local?user"
   6 ›   Notes: "Do you need this note?"
-  7 Group.xxx::
-  8 +--  4 lines: User: "picasso"-------------------------------
-  9 +--  4 lines: User: "merlin"--------------------------------
+  7 Group.ASubGroup::
+  8 +--  User: "picasso"-------------------------------
+  9 +--  User: "merlin"--------------------------------
   ```
 
 ## Mappings ##
