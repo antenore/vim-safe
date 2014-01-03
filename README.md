@@ -1,7 +1,7 @@
 VimSafe - A VIM Password Safe (Vault) like tool
 ===============================================
 
-***MPORTANT***: VimSafe has been not netested enough and I'm still working hard to improve it.
+***IMPORTANT***: VimSafe has been not netested enough and I'm still working hard to improve it.
 
 ***WARNING***: The Vim Encryption, even the one using blowfish, it's easily breakable. I'm planning to use GPG or OpenSSL as soon the plugin will be functional.
 
