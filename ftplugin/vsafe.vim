@@ -20,7 +20,7 @@
 " }}}1
 "===============================================================================
 "{{{1 ==== TODO: ===============================================================
-"{{{2 ==== Copy and Paste using the clipboard
+"{{{2 ==== 1. Copy and Paste using the clipboard ===============================
 "    Implemented using Yankitude (git@github.com:someboddy/vim-yankitute.git)
 "    You need also +xterm_clipboard and in some cases clipboard=unnamedplus
 "}}}2
@@ -44,6 +44,8 @@ setlocal nowritebackup
 setlocal bufhidden=wipe
 setlocal tw=0
 setlocal fdm=indent
+"setlocal fdm=expr
+"setlocal foldexpr=VFold(v:lnum)
 setlocal foldclose=all
 setlocal colorcolumn=0
 setlocal foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g')
@@ -88,7 +90,18 @@ function! NextField (back)
     if foldclosed('.') >= 1
         :foldopen
     endif
-endfunction  }}}2 ==== end of function NextField ===============================
+endfunction  " }}}2 ==== end of function NextField =============================
+" {{{2 ==== VFold ==============================================================
+function! VFold (lnum)
+    if getline(a:lnum) =~ '^\w.*::'
+        let vfoldlevel = 1
+    elseif getline(a:lnum) =~ '^\t\w*:\s'
+        let vfoldlevel = 2
+    else
+        let vfoldlevel = 0
+    endif
+    return vfoldlevel
+endfunction " }}}2 ==== end of function VFold =================================
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
