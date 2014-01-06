@@ -20,23 +20,9 @@
 " }}}1
 "===============================================================================
 "{{{1 ==== TODO: ===============================================================
-<<<<<<< HEAD
-"{{{2 ==== Copy and Paste using the clipboard
-" - Commands
-"   quq                                        " Clean reg u
-"   :/^\sUser:\s"\(\zs.\{-}\ze\)"$/y u        |" Yank Username in registry u
-"   let @+ = @u                                " Put reg u in Clipboard (reg +)
-"   qpq                                        " Clean reg p
-"   :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p    |" Yank Password in registry p
-"   let @+ = @p                                " Put reg p in Clipboard (reg +)
-"
-"   WARNING: This does not work if vim it's not compiled with +xterm_clipboard
-"   WARNING: yank copy the whole line, looking for alternative
-=======
 "{{{2 ==== 1. Copy and Paste using the clipboard ===============================
 "    Implemented using Yankitude (git@github.com:someboddy/vim-yankitute.git)
 "    You need also +xterm_clipboard and in some cases clipboard=unnamedplus
->>>>>>> 5fcd199d9a63b1c782ac96743b2d6f194235e3c8
 "}}}2
 "}}}1
 " {{{1 ==== Initialization =====================================================
@@ -125,13 +111,10 @@ map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
 "map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
 " Add new entry
 map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
-<<<<<<< HEAD
-=======
 map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
 map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
 map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
 map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
->>>>>>> 5fcd199d9a63b1c782ac96743b2d6f194235e3c8
 " This is to sort the headers leaving untouched the content
 map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " Motion
