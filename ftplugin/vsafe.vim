@@ -20,6 +20,7 @@
 " }}}1
 "===============================================================================
 "{{{1 ==== TODO: ===============================================================
+<<<<<<< HEAD
 "{{{2 ==== Copy and Paste using the clipboard
 " - Commands
 "   quq                                        " Clean reg u
@@ -31,6 +32,11 @@
 "
 "   WARNING: This does not work if vim it's not compiled with +xterm_clipboard
 "   WARNING: yank copy the whole line, looking for alternative
+=======
+"{{{2 ==== 1. Copy and Paste using the clipboard ===============================
+"    Implemented using Yankitude (git@github.com:someboddy/vim-yankitute.git)
+"    You need also +xterm_clipboard and in some cases clipboard=unnamedplus
+>>>>>>> 5fcd199d9a63b1c782ac96743b2d6f194235e3c8
 "}}}2
 "}}}1
 " {{{1 ==== Initialization =====================================================
@@ -52,6 +58,8 @@ setlocal nowritebackup
 setlocal bufhidden=wipe
 setlocal tw=0
 setlocal fdm=indent
+"setlocal fdm=expr
+"setlocal foldexpr=VFold(v:lnum)
 setlocal foldclose=all
 setlocal colorcolumn=0
 setlocal foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g')
@@ -97,7 +105,18 @@ function! NextField (back)
     if foldclosed('.') >= 1
         :foldopen
     endif
-endfunction  }}}2 ==== end of function NextField ===============================
+endfunction  " }}}2 ==== end of function NextField =============================
+" {{{2 ==== VFold ==============================================================
+function! VFold (lnum)
+    if getline(a:lnum) =~ '^\w.*::'
+        let vfoldlevel = 1
+    elseif getline(a:lnum) =~ '^\t\w*:\s'
+        let vfoldlevel = 2
+    else
+        let vfoldlevel = 0
+    endif
+    return vfoldlevel
+endfunction " }}}2 ==== end of function VFold =================================
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 " Copy into the system clipboard
@@ -106,6 +125,13 @@ map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
 "map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
 " Add new entry
 map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
+<<<<<<< HEAD
+=======
+map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
+map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
+map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
+map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
+>>>>>>> 5fcd199d9a63b1c782ac96743b2d6f194235e3c8
 " This is to sort the headers leaving untouched the content
 map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " Motion
