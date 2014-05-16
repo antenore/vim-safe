@@ -30,7 +30,7 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities (blowf
 
     > Place at the right place
     
-    > Hit **F4**
+    > Hit **`<F4>`**
     
     > TODO: Add by Group/SubGroup/Entry in the right place automagically
     
@@ -77,14 +77,15 @@ When you open a vsafe file all the elements, except the Groups/Subgroups, are fo
   7 Group.ASubGroup::
   8 +--  User: "picasso"-------------------------------
   9 +--  User: "merlin"--------------------------------
+ 10 +--  User: "obama"---------------------------------
   ```
 
 ## Mappings ##
 
- * **< F1 >** (WIP) Copy UserName into the system clipboard (you need +xterm_clipboard)
- * **< F2 >** (WIP) Copy Password into the system clipboard (you need +xterm_clipboard)
- * **< F4 >** To add a new entry (at the moment only manual position)
- * **< F5 >** To sort the whole file
- * **< Tab >** To move forward to the next field
- * **< S-Tab >** To move backwards to the previous field
- * **< CR >** To exit from insert mode
+ * **`<F1>`** (WIP) Copy UserName into the system clipboard (you need +xterm_clipboard)
+ * **`<F2>`** (WIP) Copy Password into the system clipboard (you need +xterm_clipboard)
+ * **`<F4>`** To add a new entry (at the moment only manual position)
+ * **`<F5>`** To sort the whole file
+ * **`<Tab>`** To move forward to the next field
+ * **`<S-Tab>`** To move backwards to the previous field
+ * **`<CR>`** To exit from insert mode
