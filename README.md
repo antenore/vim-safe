@@ -37,7 +37,7 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities (blowf
 *   Sort entries
 *   WIP: Copy User/Password into the system clipboard
 
-    > Works only with +xterm_clipboard
+    > Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
     
     > TODO: Add external clipboard tool support (i.e. xclip)
 
