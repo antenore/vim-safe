@@ -22,9 +22,9 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities (blowf
 *   Auto open/close folded elements
 *   Motion
 
-    > Move with <Tab> <S-Tab>
+    > Move with **'<Tab> <S-Tab>'**
 
-    > Exit from insert mode with <CR>
+    > Exit from insert mode with '<CR>'
 
 *   WIP: Insert new Item
 
