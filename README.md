@@ -1,5 +1,4 @@
-VimSafe - A VIM Password Safe (Vault) like tool
-===============================================
+***VimSafe - A VIM Password Safe (Vault) like tool***
 
 *Version*: 8.0
 *Author* : Antenore <antenore AT simbiosi dot org>
@@ -24,13 +23,13 @@ VimSafe - A VIM Password Safe (Vault) like tool
 
 ## CONTENTS                                 <a name="vim-safe-contents"/>
 
-1. [Introduction][#vim-safe-intro]
-    1. [Overview][#vim-safe-overview]
-    2. [Requirements][#vim-safe-requirements]
-    3. [Functionalities][#vim-safe-functionalities]
-    4. [Usage example][#vim-safe-example]
-2. [Commands][#vim-safe-commands]
-3. [Mappings][#vim-safe-mappings]
+1. [Introduction](#vim-safe-intro)
+    1. [Overview](#vim-safe-overview)
+    2. [Requirements](#vim-safe-requirements)
+    3. [Functionalities](#vim-safe-functionalities)
+    4. [Usage example](#vim-safe-example)
+2. [Commands](#vim-safe-commands)
+3. [Mappings](#vim-safe-mappings)
 
 
 ## INTRODUCTION                             <a name="vim-safe-intro"/>
@@ -125,25 +124,23 @@ folded and the passwords are all concealed with a *
   9 +--  User: "merlin"--------------------------------
  10 +--  User: "obama"---------------------------------
 >
-==============================================================================
+
 COMMANDS						 <a name="vim-safe-commands"/>
 
-							*AddVSafeEntry*
-<F4>	|AddVSafeEntry|
-	To add a new entry (at the moment only manual position)
+  `<F4>`	*AddVSafeEntry*
+	  To add a new entry (at the moment only manual position)
 
-							*VSafeNextField*
-<Tab>,
-<S-Tab>	|VSafeNextField|
-	To move back and forward between each field
-==============================================================================
+  `<Tab>`,
+  `<S-Tab>`	*VSafeNextField*
+	  To move back and forward between each field
+
 MAPPING							 <a name="vim-safe-mappings"/>
 
- <F1> (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
- <F2> (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
- <F4> To add a new entry (at the moment only manual position)
- <F5> To sort the whole file
- <Tab> To move forward to the next field
- <S-Tab> To move backwards to the previous field
- <CR> To exit from insert mode
+ `<F1>` (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
+ `<F2>` (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
+ `<F4>` To add a new entry (at the moment only manual position)
+ `<F5>` To sort the whole file
+ `<Tab>` To move forward to the next field
+ `<S-Tab>` To move backwards to the previous field
+ `<CR>` To exit from insert mode
 
