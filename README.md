@@ -61,37 +61,26 @@ In this early stage, VimSafe uses the VIM builtin encryption cababilities
 <a name=""/>
 FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
 
-    * WIP: Encryption using internal blowfish (CBC like) Vim implementation
-
-        - TODO: Allow external backend like GPG and OpenSSL
-
-    * Auto open/close folded elements
-    * Motion
-
-        - Move with **`<Tab> <S-Tab>`**
-
-	- Exit from insert mode with **`<CR>`**
-
-    * WIP: Insert new Item
-
-	- Place at the right place
-
-	- Hit **`<F4>`**
-
-	- TODO: Add by Group/SubGroup/Entry in the right place automagically
-
-    *   Sort entries
-    *   WIP: Copy User/Password into the system clipboard
-
-	- Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
-
-	- TODO: Add external clipboard tool support (i.e. xclip)
+* WIP: Encryption using internal blowfish (CBC like) Vim implementation
+  - TODO: Allow external backend like GPG and OpenSSL
+* Auto open/close folded elements
+* Motion
+  - Move with **`<Tab> <S-Tab>`**
+  - Exit from insert mode with **`<CR>`**
+* WIP: Insert new Item
+  - Place at the right place
+  - Hit **`<F4>`**
+  - TODO: Add by Group/SubGroup/Entry in the right place automagically
+* Sort entries
+* WIP: Copy User/Password into the system clipboard
+  - Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
+  - TODO: Add external clipboard tool support (i.e. xclip)
 
 <a name=""/>
 USAGE-EXAMPLE						 <a name="vim-safe-example"/>
 
 The text in the vsafe file has to be formatted in this way:
->
+```
    # -=# VimSafe #=->
    Group.SubGroup.SubSubGroup::
        User: "Raffaello"
@@ -108,11 +97,12 @@ The text in the vsafe file has to be formatted in this way:
        Password:
        Url:
        Notes:
-<
+```
 
 When you open a vsafe file all the elements, except the Groups/Subgroups, are
 folded and the passwords are all concealed with a *
->
+
+```
   1 # -=# VimSafe #=-
   2 Group.SubGroup.SubSubGroup::
   3 ›   User: "raffaello"
@@ -123,7 +113,7 @@ folded and the passwords are all concealed with a *
   8 +--  User: "picasso"-------------------------------
   9 +--  User: "merlin"--------------------------------
  10 +--  User: "obama"---------------------------------
->
+```
 
 COMMANDS						 <a name="vim-safe-commands"/>
 
@@ -136,11 +126,12 @@ COMMANDS						 <a name="vim-safe-commands"/>
 
 MAPPING							 <a name="vim-safe-mappings"/>
 
- `<F1>` (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
- `<F2>` (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
- `<F4>` To add a new entry (at the moment only manual position)
- `<F5>` To sort the whole file
- `<Tab>` To move forward to the next field
- `<S-Tab>` To move backwards to the previous field
- `<CR>` To exit from insert mode
+ * `<F1>` (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
+ * `<F2>` (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
+ * `<F4>` To add a new entry (at the moment only manual position)
+ * `<F5>` To sort the whole file
+ * `<Tab>` To move forward to the next field
+ * `<S-Tab>` To move backwards to the previous field
+ * `<CR>` To exit from insert mode
+
 
