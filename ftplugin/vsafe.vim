@@ -52,8 +52,8 @@ setlocal foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|
 setlocal clipboard=unnamedplus
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
-" {{{2 ==== s:NewVsafeEntry ====================================================
-function! s:NewVsafeEntry()
+" {{{2 ==== s:NewVSafeEntry ====================================================
+function! s:NewVSafeEntry()
     " TODO: Replace with distionary or list and loop
     let line=line(".")
     call inputsave()
@@ -64,7 +64,7 @@ function! s:NewVsafeEntry()
     call append(line+2,'	Password: "{PASSWORD}"')
     call append(line+3,'	Url: ""')
     call append(line+4,'	Note ""')
-endfunction " }}}2 ==== end of function s:NewVsafeEntry ========================
+endfunction " }}}2 ==== end of function s:NewVSafeEntry ========================
 " {{{2 ==== s:PlaceCursor ======================================================
 function! s:PlaceCursor(pat)
     let [pline, pcol] = searchpos(a:pat, 'cw')
@@ -75,13 +75,13 @@ function! s:PlaceCursor(pat)
     :foldopen
     :startinsert
 endfunction " }}}2 ==== end of function s:PlaceCursor ==========================
-" {{{2 ==== AddVsafeEntry ======================================================
-function! AddVsafeEntry()
-    call s:NewVsafeEntry()
+" {{{2 ==== AddVSafeEntry ======================================================
+function! AddVSafeEntry()
+    call s:NewVSafeEntry()
     call s:PlaceCursor('{USER}')
-endfunction " }}}2 ==== end of function s:AddVsafeEntry ========================
-" {{{2 ==== NextField ==========================================================
-function! NextField (back)
+endfunction " }}}2 ==== end of function s:AddVSafeEntry ========================
+" {{{2 ==== VSafeNextField ==========================================================
+function! VSafeNextField (back)
     if a:back != 'bck'
         let bckflag = ''
     else
@@ -91,7 +91,7 @@ function! NextField (back)
     if foldclosed('.') >= 1
         :foldopen
     endif
-endfunction  " }}}2 ==== end of function NextField =============================
+endfunction  " }}}2 ==== end of function VSafeNextField =============================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
     if getline(a:lnum) =~ '^\w.*::'
@@ -110,16 +110,16 @@ map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
 map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
 "map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
 " Add new entry
-map <silent> <buffer> <F4> <Esc>:call AddVsafeEntry()<CR>
-map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
-map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
+map <silent> <buffer> <F4> <Esc>:call AddVSafeEntry()<CR>
+map <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
+map <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
 map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
 map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
 " This is to sort the headers leaving untouched the content
 map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " Motion
-map <silent> <buffer> <Tab> :call NextField('fwd')<CR>
-map <silent> <buffer> <S-Tab> :call NextField('bck')<CR>
+map <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
+map <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
 imap <buffer> <CR> <Esc>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
