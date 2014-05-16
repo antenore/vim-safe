@@ -1,0 +1,12 @@
+AddVSafeEntry	vimsafe.txt	/*AddVSafeEntry*
+VSafeNextField	vimsafe.txt	/*VSafeNextField*
+VimSafe	vimsafe.txt	/*VimSafe*
+vim-safe-commands	vimsafe.txt	/*vim-safe-commands*
+vim-safe-contents	vimsafe.txt	/*vim-safe-contents*
+vim-safe-example	vimsafe.txt	/*vim-safe-example*
+vim-safe-functionalities	vimsafe.txt	/*vim-safe-functionalities*
+vim-safe-intro	vimsafe.txt	/*vim-safe-intro*
+vim-safe-mappings	vimsafe.txt	/*vim-safe-mappings*
+vim-safe-overview	vimsafe.txt	/*vim-safe-overview*
+vim-safe-requirements	vimsafe.txt	/*vim-safe-requirements*
+vimsafe.txt	vimsafe.txt	/*vimsafe.txt*
