@@ -80,7 +80,7 @@ FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
 USAGE-EXAMPLE						 <a name="vim-safe-example"/>
 
 The text in the vsafe file has to be formatted in this way:
-```
+```yml
    # -=# VimSafe #=->
    Group.SubGroup.SubSubGroup::
        User: "Raffaello"
@@ -102,7 +102,7 @@ The text in the vsafe file has to be formatted in this way:
 When you open a vsafe file all the elements, except the Groups/Subgroups, are
 folded and the passwords are all concealed with a *
 
-```
+```vim
   1 # -=# VimSafe #=-
   2 Group.SubGroup.SubSubGroup::
   3 ›   User: "raffaello"
