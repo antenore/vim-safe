@@ -118,14 +118,14 @@ folded and the passwords are all concealed with a *
 
 COMMANDS						 <a name="vim-safe-commands"/>
 
-  `<F4>`	*AddVSafeEntry*
+  `<F4>`	*AddVSafeEntry*  
 	  To add a new entry (at the moment only manual position)
 
   `<Tab>`,
-  `<S-Tab>`	*VSafeNextField*
+  `<S-Tab>`	*VSafeNextField*  
 	  To move back and forward between each field
 
-  `<F8>`,›  *VPWGen*
+  `<F8>`,›  *VPWGen*  
 ›     It generates a random password in the p register
 
 MAPPING							 <a name="vim-safe-mappings"/>
