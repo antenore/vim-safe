@@ -1,4 +1,5 @@
 AddVSafeEntry	vimsafe.txt	/*AddVSafeEntry*
+VPWgen	vimsafe.txt	/*VPWgen*
 VSafeNextField	vimsafe.txt	/*VSafeNextField*
 VimSafe	vimsafe.txt	/*VimSafe*
 vim-safe-commands	vimsafe.txt	/*vim-safe-commands*

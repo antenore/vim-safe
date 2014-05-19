@@ -75,6 +75,7 @@ FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
 * WIP: Copy User/Password into the system clipboard
   - Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
   - TODO: Add external clipboard tool support (i.e. xclip)
+*   Password generation using external command pwgen
 
 <a name=""/>
 USAGE-EXAMPLE						 <a name="vim-safe-example"/>
@@ -124,12 +125,16 @@ COMMANDS						 <a name="vim-safe-commands"/>
   `<S-Tab>`	*VSafeNextField*
 	  To move back and forward between each field
 
+  `<F8>`,›  *VPWGen*
+›     It generates a random password in the p register
+
 MAPPING							 <a name="vim-safe-mappings"/>
 
  * `<F1>` (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
  * `<F2>` (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
  * `<F4>` To add a new entry (at the moment only manual position)
  * `<F5>` To sort the whole file
+ * `<F8>` Random password in the register p
  * `<Tab>` To move forward to the next field
  * `<S-Tab>` To move backwards to the previous field
  * `<CR>` To exit from insert mode
