@@ -59,35 +59,31 @@ REQUIREMENTS						*vim-safe-requirements*
 Yankitute
     Author:  Idan Arye <https://github.com/someboddy/>
 
+Pwgen
+    Author:  Theodore Ts'o <tytso@alum.mit.edu>
+
+    It can be replaced with something else, like apg. In that case you must
+    modify the VPWGen Function.
+
 
 ------------------------------------------------------------------------------
 FUNCTIONALITIES					    *vim-safe-functionalities*
 
     * WIP: Encryption using internal blowfish (CBC like) Vim implementation
-
         - TODO: Allow external backend like GPG and OpenSSL
-
     * Auto open/close folded elements
     * Motion
-
         - Move with **`<Tab> <S-Tab>`**
-
 	- Exit from insert mode with **`<CR>`**
-
     * WIP: Insert new Item
-
 	- Place at the right place
-
 	- Hit **`<F4>`**
-
 	- TODO: Add by Group/SubGroup/Entry in the right place automagically
-
     *   Sort entries
     *   WIP: Copy User/Password into the system clipboard
-
 	- Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
-
 	- TODO: Add external clipboard tool support (i.e. xclip)
+    *   Password generation using external command pwgen
 
 ------------------------------------------------------------------------------
 USAGE-EXAMPLE						*vim-safe-example*
@@ -137,6 +133,9 @@ COMMANDS						*vim-safe-commands*
 <Tab>,
 <S-Tab>	|VSafeNextField|
 	To move back and forward between each field
+							*VPWgen*
+<F8>,	|VPWGen|
+	It generates a random password in the p register
 ==============================================================================
 MAPPING							*vim-safe-mappings*
 
@@ -144,6 +143,7 @@ MAPPING							*vim-safe-mappings*
  <F2> (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
  <F4> To add a new entry (at the moment only manual position)
  <F5> To sort the whole file
+ <F8> Random password in the register p
  <Tab> To move forward to the next field
  <S-Tab> To move backwards to the previous field
  <CR> To exit from insert mode

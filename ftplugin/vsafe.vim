@@ -103,6 +103,15 @@ function! VFold (lnum)
     endif
     return vfoldlevel
 endfunction " }}}2 ==== end of function VFold =================================
+" {{{2 ==== VPWGen =============================================================
+function! VPWGen()
+  let pwcmd = '/bin/pwgen -cnyB 16 1'
+  let pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
+  redir @p>
+   echo pw
+  redir END
+endfunction
+" }}}2 end of function VPWGEN ==================================================
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 " Copy into the system clipboard
@@ -115,6 +124,8 @@ map <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
 map <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
 map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
 map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
+" Password: call VPWGen and pasting back it's content; clean again the register
+nnoremap <F8> :call VPWGen()<CR>"ppJxqpq
 " This is to sort the headers leaving untouched the content
 map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " Motion
