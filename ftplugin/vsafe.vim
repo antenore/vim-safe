@@ -103,8 +103,37 @@ function! VFold (lnum)
     endif
     return vfoldlevel
 endfunction " }}}2 ==== end of function VFold =================================
+" {{{2 ==== VSRandom ============================================================
+function! VSRandom ()
+    let l:bufsize = 0
+    let l:strchars = '[^[:alnum:][!$?#@.,;:]'
+    " Default value for strsize (the random string size) is 15
+    if a:0 > 0
+        let l:size = a:1
+    else
+        let l:size = 15
+    endif
+    " The while loop ends as soon as I have a string of l:size 
+    while l:bufsize == 0
+        if filereadable("/dev/urandom")
+            for l:line in readfile("/dev/urandom", "", 1)
+                let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
+                let l:sizeofrnd = strdisplaywidth(l:rndstring)
+                if l:sizeofrnd >= l:size
+                    let l:bufsize = 1
+                endif
+            endfor
+        else
+            echo "not a random string" 
+        endif
+    endwhile
+    echo l:rndstring
+endfunction
+" }}}2 end of VSRandom
 " {{{2 ==== VPWGen =============================================================
 function! VPWGen()
+  " Or my amazing VSRandom function
+  " let pwcmd = VSRandom(15)
   let pwcmd = '/bin/pwgen -cnyB 16 1'
   let pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
   redir @p>
