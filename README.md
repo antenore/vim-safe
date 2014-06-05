@@ -75,7 +75,9 @@ FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
 * WIP: Copy User/Password into the system clipboard
   - Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
   - TODO: Add external clipboard tool support (i.e. xclip)
-*   Password generation using external command pwgen
+*   Automatic password generation with
+  - Internal VSRandom function using /dev/urandom (this is literally amazing)
+  - external command pwgen
 
 <a name=""/>
 USAGE-EXAMPLE						 <a name="vim-safe-example"/>
