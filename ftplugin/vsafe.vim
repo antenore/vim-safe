@@ -104,7 +104,8 @@ function! VFold (lnum)
     return vfoldlevel
 endfunction " }}}2 ==== end of function VFold =================================
 " {{{2 ==== VSRandom ============================================================
-function! VSRandom ()
+" Accept 0 or more args ( the number of chars )
+function! VSRandom (...)
     let l:bufsize = 0
     let l:strchars = '[^[:alnum:][!$?#@.,;:]'
     " Default value for strsize (the random string size) is 15
@@ -124,20 +125,23 @@ function! VSRandom ()
                 endif
             endfor
         else
-            echo "not a random string" 
+            "echo "not a random string"
+            return "not a random string"
         endif
     endwhile
-    echo l:rndstring
+    "echo l:rndstring
+    return l:rndstring
 endfunction
 " }}}2 end of VSRandom
 " {{{2 ==== VPWGen =============================================================
 function! VPWGen()
+  "let pwcmd = '/bin/pwgen -cnyB 16 1'
+  "let pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
   " Or my amazing VSRandom function
-  " let pwcmd = VSRandom(15)
-  let pwcmd = '/bin/pwgen -cnyB 16 1'
-  let pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
+  let l:pwstring = VSRandom(15)
+  let l:pw = substitute(VSRandom(15), '[\]\|[[:cntrl:]]', '', 'g')
   redir @p>
-   echo pw
+   echo l:pw
   redir END
 endfunction
 " }}}2 end of function VPWGEN ==================================================
