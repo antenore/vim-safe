@@ -118,15 +118,17 @@ folded and the passwords are all concealed with a *
 
 COMMANDS						 <a name="vim-safe-commands"/>
 
->  `<F4>`	*AddVSafeEntry*  
->			To add a new entry (at the moment only manual position)
->
->  `<Tab>`,
->  `<S-Tab>` *VSafeNextField*  
->			To move back and forward between each field
->
->  `<F8>`	*VPWGen*  
->			It generates a random password in the p register
+| Shortcut | Command / Description |
+|:---------|:----------------------|
+| `<F4>`   |  *AddVSafeEntry*
+|          | To add a new entry (at the moment only manual position)
+
+`<Tab>`,
+`<S-Tab>` *VSafeNextField*  
+To move back and forward between each field
+
+`<F8>`	*VPWGen*  
+It generates a random password in the p register
 
 MAPPING							 <a name="vim-safe-mappings"/>
 
@@ -138,5 +140,4 @@ MAPPING							 <a name="vim-safe-mappings"/>
  * `<Tab>` To move forward to the next field
  * `<S-Tab>` To move backwards to the previous field
  * `<CR>` To exit from insert mode
-
 
