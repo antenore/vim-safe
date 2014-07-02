@@ -24,32 +24,30 @@
 ## CONTENTS                                 <a name="vim-safe-contents"/>
 
 1. [Introduction](#vim-safe-intro)
-    1. [Overview](#vim-safe-overview)
-    2. [Requirements](#vim-safe-requirements)
-    3. [Functionalities](#vim-safe-functionalities)
-    4. [Usage example](#vim-safe-example)
+    1. [Requirements](#vim-safe-requirements)
+    2. [Functionalities](#vim-safe-functionalities)
+    3. [Usage example](#vim-safe-example)
 2. [Commands](#vim-safe-commands)
 3. [Mappings](#vim-safe-mappings)
 
 
 ## INTRODUCTION                             <a name="vim-safe-intro"/>
 
+VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
+
+In this early stage, VimSafe uses the VIM builtin encryption cababilities
+(blowfish). As highlighted later, this solution it's not conmpletely safe.
+
 **IMPORTANT**: VimSafe has been not tetested enough and I'm still working hard to
            improve it.
 
 **WARNING**: The Vim Encryption, even the one using blowfish, it's easily breakable.
-         I'm planning to use GPG or OpenSSL as soon the plugin will be
-         "production ready".
+         I'm planning to use GPG and/or OpenSSL as soon as possible.
+         Don't forget that when the file is opened a "clear text" copy of its 
+         content will be available in the memory
 
 If you want to help (and/or teach me your Vim wizardry), you are more than
 welcome.
-
-### OVERVIEW                                 <a name="vim-safe-overview"/>
-
-VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
-
-In this early stage, VimSafe uses the VIM builtin encryption cababilities
-(blowfish). As highlighted, this solution it's not  safe.
 
 <a name="vim-safe-requirements"/>
 ### REQUIREMENTS
@@ -75,6 +73,7 @@ FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
 * WIP: Copy User/Password into the system clipboard
   - Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
   - TODO: Add external clipboard tool support (i.e. xclip)
+*   Password generation using /dev/urandom
 *   Password generation using external command pwgen
 
 <a name=""/>

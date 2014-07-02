@@ -2,7 +2,7 @@
 " FILE: vsafe.vim
 " AUTHOR: Antenore <antenore@simbiosi.org>
 " Last Modified: 21 Dec 2013
-" License: GPLv3 License {{{1===== License: GPLv3 License =====================
+" License: GPLv3 License {{{1===== License: GPLv3 License ======================
 " This file is part of VimSafe.
 "
 " VimSafe is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ function! AddVSafeEntry()
     call s:NewVSafeEntry()
     call s:PlaceCursor('{USER}')
 endfunction " }}}2 ==== end of function s:AddVSafeEntry ========================
-" {{{2 ==== VSafeNextField ==========================================================
+" {{{2 ==== VSafeNextField =====================================================
 function! VSafeNextField (back)
     if a:back != 'bck'
         let bckflag = ''
@@ -91,7 +91,7 @@ function! VSafeNextField (back)
     if foldclosed('.') >= 1
         :foldopen
     endif
-endfunction  " }}}2 ==== end of function VSafeNextField =============================
+endfunction  " }}}2 ==== end of function VSafeNextField ========================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
     if getline(a:lnum) =~ '^\w.*::'
@@ -102,9 +102,9 @@ function! VFold (lnum)
         let vfoldlevel = 0
     endif
     return vfoldlevel
-endfunction " }}}2 ==== end of function VFold =================================
-" {{{2 ==== VSRandom ============================================================
-function! VSRandom ()
+endfunction " }}}2 ==== end of function VFold ==================================
+" {{{2 ==== VSRandom ===========================================================
+function! VSRandom (...)
     let l:bufsize = 0
     let l:strchars = '[^[:alnum:][!$?#@.,;:]'
     " Default value for strsize (the random string size) is 15
@@ -115,52 +115,53 @@ function! VSRandom ()
     endif
     " The while loop ends as soon as I have a string of l:size 
     while l:bufsize == 0
-        if filereadable("/dev/urandom")
-            for l:line in readfile("/dev/urandom", "", 1)
-                let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
-                let l:sizeofrnd = strdisplaywidth(l:rndstring)
-                if l:sizeofrnd >= l:size
-                    let l:bufsize = 1
-                endif
-            endfor
-        else
-            echo "not a random string" 
-        endif
+        for l:line in readfile("/dev/urandom", "", 1)
+            let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
+            let l:sizeofrnd = strdisplaywidth(l:rndstring)
+            if l:sizeofrnd >= l:size
+                let l:bufsize = 1
+            endif
+        endfor
     endwhile
-    echo l:rndstring
+    return l:rndstring
 endfunction
 " }}}2 end of VSRandom
 " {{{2 ==== VPWGen =============================================================
 function! VPWGen()
-  " Or my amazing VSRandom function
-  " let pwcmd = VSRandom(15)
-  let pwcmd = '/bin/pwgen -cnyB 16 1'
-  let pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
+    if filereadable("/dev/urandom")
+        "let l:pwcmd = VSRandom(15)
+        let l:pw = substitute(VSRandom(15), '[\]\|[[:cntrl:]]', '', 'g')
+        echoerr l:pw
+    elseif filereadable("/bin/pwgen")
+        let l:pwcmd = '/bin/pwgen -cnyB 16 1'
+        let l:pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
+    else
+        echoerr "ERR: neither /dev/urandom or pwgen have beed found"
+    endif
   redir @p>
-   echo pw
+   echo l:pw
   redir END
 endfunction
 " }}}2 end of function VPWGEN ==================================================
 " }}}1
 " {{{1 ==== Mappings ===========================================================
-" Copy into the system clipboard
-map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
-map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
-"map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
-" Add new entry
-map <silent> <buffer> <F4> <Esc>:call AddVSafeEntry()<CR>
-map <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
-map <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
-map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
-map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
-" Password: call VPWGen and pasting back it's content; clean again the register
-nnoremap <F8> :call VPWGen()<CR>"ppJxqpq
-" This is to sort the headers leaving untouched the content
-map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " Motion
 map <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
 map <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
 imap <buffer> <CR> <Esc>
+" Copy into the system clipboard the old way
+"map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
+"map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
+""map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
+" Copy to clipboard using Yankitude
+map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
+map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
+" Add new entry
+map <silent> <buffer> <F4> <Esc>:call AddVSafeEntry()<CR>
+" Password: call VPWGen and pasting back it's content; clean again the register
+nnoremap <F8> :call VPWGen()<CR>"ppJxqpq
+" This is to sort the headers leaving untouched the content
+map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
 if exists('b:undo_ftplugin')
