@@ -102,14 +102,9 @@ function! VFold (lnum)
         let vfoldlevel = 0
     endif
     return vfoldlevel
-<<<<<<< HEAD
 endfunction " }}}2 ==== end of function VFold ==================================
 " {{{2 ==== VSRandom ===========================================================
-=======
-endfunction " }}}2 ==== end of function VFold =================================
-" {{{2 ==== VSRandom ============================================================
 " Accept 0 or more args ( the number of chars )
->>>>>>> 5f4d57cc59bb74f062ce7d935bc92f07e3ede9ee
 function! VSRandom (...)
     let l:bufsize = 0
     let l:strchars = '[^[:alnum:][!$?#@.,;:]'
@@ -121,7 +116,6 @@ function! VSRandom (...)
     endif
     " The while loop ends as soon as I have a string of l:size 
     while l:bufsize == 0
-<<<<<<< HEAD
         for l:line in readfile('/dev/urandom', '', 1)
             let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
             let l:sizeofrnd = strdisplaywidth(l:rndstring)
@@ -130,28 +124,11 @@ function! VSRandom (...)
             endif
         endfor
     endwhile
-=======
-        if filereadable("/dev/urandom")
-            for l:line in readfile("/dev/urandom", "", 1)
-                let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
-                let l:sizeofrnd = strdisplaywidth(l:rndstring)
-                if l:sizeofrnd >= l:size
-                    let l:bufsize = 1
-                endif
-            endfor
-        else
-            "echo "not a random string"
-            return "not a random string"
-        endif
-    endwhile
-    "echo l:rndstring
->>>>>>> 5f4d57cc59bb74f062ce7d935bc92f07e3ede9ee
     return l:rndstring
 endfunction
 " }}}2 end of VSRandom
 " {{{2 ==== VPWGen =============================================================
 function! VPWGen()
-<<<<<<< HEAD
     if filereadable("/dev/urandom")
         "let l:pwcmd = VSRandom(15)
         let l:pw = substitute(VSRandom(15), '[\]\|[[:cntrl:]]', '', 'g')
@@ -165,16 +142,6 @@ function! VPWGen()
     redir @p>
     echomsg l:pw
     redir END
-=======
-  "let pwcmd = '/bin/pwgen -cnyB 16 1'
-  "let pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
-  " Or my amazing VSRandom function
-  let l:pwstring = VSRandom(15)
-  let l:pw = substitute(VSRandom(15), '[\]\|[[:cntrl:]]', '', 'g')
-  redir @p>
-   echo l:pw
-  redir END
->>>>>>> 5f4d57cc59bb74f062ce7d935bc92f07e3ede9ee
 endfunction
 " }}}2 end of function VPWGEN ==================================================
 " }}}1
