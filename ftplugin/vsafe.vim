@@ -27,9 +27,9 @@
 "}}}1
 " {{{1 ==== Initialization =====================================================
 if exists('b:did_ftplugin')
-  finish
+    finish
 else
-  let b:did_ftplugin = 1
+    let b:did_ftplugin = 1
 endif
 
 let s:cpo_save = &cpo
@@ -94,9 +94,9 @@ function! VSafeNextField (back)
 endfunction  " }}}2 ==== end of function VSafeNextField ========================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
-    if getline(a:lnum) =~ '^\w.*::'
+    if getline(a:lnum) =~? '^\w.*::'
         let vfoldlevel = 1
-    elseif getline(a:lnum) =~ '^\t\w*:\s'
+    elseif getline(a:lnum) =~? '^\t\w*:\s'
         let vfoldlevel = 2
     else
         let vfoldlevel = 0
@@ -115,7 +115,7 @@ function! VSRandom (...)
     endif
     " The while loop ends as soon as I have a string of l:size 
     while l:bufsize == 0
-        for l:line in readfile("/dev/urandom", "", 1)
+        for l:line in readfile('/dev/urandom', '', 1)
             let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
             let l:sizeofrnd = strdisplaywidth(l:rndstring)
             if l:sizeofrnd >= l:size
@@ -131,16 +131,16 @@ function! VPWGen()
     if filereadable("/dev/urandom")
         "let l:pwcmd = VSRandom(15)
         let l:pw = substitute(VSRandom(15), '[\]\|[[:cntrl:]]', '', 'g')
-        echoerr l:pw
+        echomsg l:pw
     elseif filereadable("/bin/pwgen")
         let l:pwcmd = '/bin/pwgen -cnyB 16 1'
         let l:pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
     else
-        echoerr "ERR: neither /dev/urandom or pwgen have beed found"
+        echomsg "ERR: neither /dev/urandom or pwgen have beed found"
     endif
-  redir @p>
-   echo l:pw
-  redir END
+    redir @p>
+    echomsg l:pw
+    redir END
 endfunction
 " }}}2 end of function VPWGEN ==================================================
 " }}}1
@@ -165,9 +165,9 @@ map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
 if exists('b:undo_ftplugin')
-  let b:undo_ftplugin .= "|setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<"
+    let b:undo_ftplugin .= "|setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<"
 else
-  let b:undo_ftplugin = "setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<"
+    let b:undo_ftplugin = "setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<"
 endif
 
 let &cpo = s:cpo_save
