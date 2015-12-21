@@ -50,6 +50,9 @@ setlocal foldclose=all
 setlocal colorcolumn=0
 setlocal foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g')
 setlocal clipboard=unnamedplus
+" Concealing password
+setlocal conceallevel=2
+setlocal concealcursor=""
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
 " {{{2 ==== s:NewVSafeEntry ====================================================
@@ -114,7 +117,7 @@ function! VSRandom (...)
     else
         let l:size = 15
     endif
-    " The while loop ends as soon as I have a string of l:size 
+    " The while loop ends as soon as I have a string of l:size
     while l:bufsize == 0
         for l:line in readfile('/dev/urandom', '', 1)
             let l:rndstring = strpart(substitute(l:line, l:strchars, '' , 'g'), 0, l:size)
