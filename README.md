@@ -1,3 +1,4 @@
+![](https://antenore.simbiosi.org/assets/images/vim-safe.svg)
 *VimSafe - A VIM Password Safe (Vault) like tool*
 
 - [Introduction](#introduction)
