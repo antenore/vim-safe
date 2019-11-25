@@ -1,5 +1,19 @@
 *VimSafe - A VIM Password Safe (Vault) like tool*
 
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  * [Vim 8+ packages](#vim-8--packages)
+  * [Pathogen](#pathogen)
+  * [Vundle](#vundle)
+  * [VimPlug](#vimplug)
+  * [apt-vim](#apt-vim)
+- [Functionalities](#functionalities)
+- [Usage](#usage)
+- [Commands](#commands)
+- [Mapping](#mapping)
+- [Version and licence](#version-and-licence)
+
 ## Introduction
 
 VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
