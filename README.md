@@ -1,19 +1,5 @@
 *VimSafe - A VIM Password Safe (Vault) like tool*
 
-- [Introduction](#introduction)
-- [Requirements](#requirements)
-- [Installation](#installation)
-  * [Vim 8+ packages](#vim-8--packages)
-  * [pathogen.vim](#-pathogenvim--https---githubcom-tpope-vim-pathogen-)
-  * [Vundle.vim](#-vundlevim--https---githubcom-vundlevim-vundlevim-)
-  * [vim-plug](#-vim-plug--https---githubcom-junegunn-vim-plug-)
-  * [apt-vim](#-apt-vim--https---githubcom-egalpin-apt-vim-)
-- [Functionalities](#functionalities)
-- [Usage](#usage)
-- [Commands](#commands)
-- [Mapping](#mapping)
-- [Version and licence](#version-and-licence)
-
 ## Introduction
 
 VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
@@ -28,6 +14,7 @@ welcome.
   * Vim 7.4.401 or later is needed to use blowfish2.
   * Yankitute
     *Author*:  Idan Arye <https://github.com/someboddy/>
+  * pwgen (optional).
 
 ## Installation
 
@@ -44,7 +31,9 @@ vim -u NONE -c "helptags ~/.vim/pack/vendor/start/vim-safe/doc" -c q
 
 Otherwise, these are some of the several 3rd-party plugin managers you can choose from. Be sure you read the instructions for your chosen plugin, as there typically are additional steps you nee d to take.
 
-### [pathogen.vim](https://github.com/tpope/vim-pathogen)
+### Pathogen
+
+[pathogen.vim](https://github.com/tpope/vim-pathogen)
 
 In the terminal,
 ```bash
@@ -59,21 +48,30 @@ filetype plugin indent on
 
 Then reload vim, run `:helptags ~/.vim/bundle/vim-safe/doc/` or `:Helptags`.
 
-### [Vundle.vim](https://github.com/VundleVim/Vundle.vim)
+### Vundle
+
+[Vundle.vim](https://github.com/VundleVim/Vundle.vim)
+
 ```vim
 call vundle#begin()
 Plugin 'antenore/vim-safe'
 call vundle#end()
 ```
 
-### [vim-plug](https://github.com/junegunn/vim-plug)
+### VimPlug
+
+[vim-plug](https://github.com/junegunn/vim-plug)
+
 ```vim
 call plug#begin()
 Plug 'antenore/vim-safe'
 call plug#end()
 ```
 
-### [apt-vim](https://github.com/egalpin/apt-vim)
+### apt-vim
+
+[apt-vim](https://github.com/egalpin/apt-vim)
+
 ```bash
 apt-vim install -y https://gitlab.com/antenore/vim-safe.git
 ```
@@ -149,7 +147,6 @@ To move back and forward between each field
 `<F8>`	*VPWGen*
 It generates a random password in the p register
 
-<a name="vim-safe-mappings"/>
 ## Mapping
 
  * `<F1>` (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
@@ -163,9 +160,9 @@ It generates a random password in the p register
 
 ## Version and licence
 
-*Version*: 8.0
-*Author* : Antenore `<antenore AT simbiosi dot org>`
-*License*: GPLv3
+ * *Version* : 8.0
+ * *Author*  : Antenore `<antenore AT simbiosi dot org>`
+ * *License* : GPLv3
 
 >   VimSafe an encrypted, text-only, password keeper
 >   Copyright (C) 2014 Antenore Gatta
