@@ -14,16 +14,7 @@
 
 VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
 
-In this early stage, VimSafe uses the VIM builtin encryption cababilities
-(blowfish). As highlighted later, this solution it's not conmpletely safe.
-
-**IMPORTANT**: VimSafe has been not tetested enough and I'm still working hard to
-           improve it.
-
-**WARNING**: The Vim Encryption, even the one using blowfish, it's easily breakable.
-         I'm planning to use GPG and/or OpenSSL as soon as possible.
-         Don't forget that when the file is opened a "clear text" copy of its 
-         content will be available in the memory
+VimSafe uses the VIM builtin encryption capabilities (blowfish2).
 
 If you want to help (and/or teach me your Vim wizardry), you are more than
 welcome.
@@ -31,6 +22,7 @@ welcome.
 <a name="vim-safe-requirements"/>
 ### REQUIREMENTS
 
+  * Vim 7.4.401 or later is needed to use blowfish2.
   * Yankitute
     *Author*:  Idan Arye <https://github.com/someboddy/>
 
@@ -38,18 +30,17 @@ welcome.
 <a name=""/>
 FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
 
-* WIP: Encryption using internal blowfish (CBC like) Vim implementation
-  - TODO: Allow external backend like GPG and OpenSSL
+* Encryption using internal blowfish2 Vim implementation
 * Auto open/close folded elements
 * Motion
   - Move with **`<Tab> <S-Tab>`**
   - Exit from insert mode with **`<CR>`**
-* WIP: Insert new Item
+* Insert new Item
   - Place at the right place
   - Hit **`<F4>`**
   - TODO: Add by Group/SubGroup/Entry in the right place automagically
 * Sort entries
-* WIP: Copy User/Password into the system clipboard
+* Copy User/Password into the system clipboard
   - Works only with +xterm_clipboard ( **`<F1>`** **`<F2>`** )
   - TODO: Add external clipboard tool support (i.e. xclip)
 *   Automatic password generation with
@@ -103,10 +94,10 @@ COMMANDS						 <a name="vim-safe-commands"/>
 |          | To add a new entry (at the moment only manual position)
 
 `<Tab>`,
-`<S-Tab>` *VSafeNextField*  
+`<S-Tab>` *VSafeNextField*
 To move back and forward between each field
 
-`<F8>`	*VPWGen*  
+`<F8>`	*VPWGen*
 It generates a random password in the p register
 
 MAPPING							 <a name="vim-safe-mappings"/>

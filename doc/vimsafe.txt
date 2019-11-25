@@ -35,26 +35,17 @@ Mappings		|vim-safe-mappings|
 ==============================================================================
 INTRODUCTION						      *vim-safe-intro*
 
-IMPORTANT: VimSafe has been not tetested enough and I'm still working hard to
-           improve it.
-
-WARNING: The Vim Encryption, even the one using blowfish, it's easily breakable.
-         I'm planning to use GPG or OpenSSL as soon the plugin will be
-         "production ready".
-
-If you want to help (and/or teach me your Vim wizardry), you are more than
-welcome.
-
-------------------------------------------------------------------------------
-OVERVIEW						*vim-safe-overview*
-
 VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
 
 In this early stage, VimSafe uses the VIM builtin encryption cababilities
-(blowfish). As highlighted, this solution it's not  safe.
+(blowfish2).
 
 ------------------------------------------------------------------------------
 REQUIREMENTS						*vim-safe-requirements*
+
+Vim
+
+    Vim 7.4.401 or later is needed to use blowfish2.
 
 Yankitute
     Author:  Idan Arye <https://github.com/someboddy/>
@@ -69,7 +60,7 @@ Pwgen
 ------------------------------------------------------------------------------
 FUNCTIONALITIES					    *vim-safe-functionalities*
 
-    * WIP: Encryption using internal blowfish (CBC like) Vim implementation
+    * WIP: Encryption using internal blowfish2 Vim implementation
         - TODO: Allow external backend like GPG and OpenSSL
     * Auto open/close folded elements
     * Motion
