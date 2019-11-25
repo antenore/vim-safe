@@ -149,17 +149,11 @@ folded and the passwords are all concealed with a *
 
 ## Commands
 
-| Shortcut | Command / Description |
-|:---------|:----------------------|
-| `<F4>`   |  *AddVSafeEntry*
-|          | To add a new entry (at the moment only manual position)
-
-`<Tab>`,
-`<S-Tab>` *VSafeNextField*
-To move back and forward between each field
-
-`<F8>`	*VPWGen*
-It generates a random password in the p register
+| Shortcut           | Command / Description                                                   |
+| :----------------- | :---------------------------------------------------------------------- |
+| `<F4>`             | *AddVSafeEntry* To add a new entry (at the moment only manual position) |
+| `<Tab>`, `<S-Tab>` | *VSafeNextField* To move back and forward between each field            |
+| `<F8>`             | *VPWGen* It generates a random password in the p register               |
 
 ## Mapping
 
@@ -193,3 +187,5 @@ It generates a random password in the p register
 >
 >   You should have received a copy of the GNU General Public License
 >   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
