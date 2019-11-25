@@ -1,6 +1,7 @@
 ***VimSafe - A VIM Password Safe (Vault) like tool***
 
-## CONTENTS                                 <a name="vim-safe-contents"/>
+<a name="vim-safe-contents"/>
+## CONTENTS
 
 1. [Introduction](#vim-safe-intro)
     1. [Requirements](#vim-safe-requirements)
@@ -9,8 +10,8 @@
 2. [Commands](#vim-safe-commands)
 3. [Mappings](#vim-safe-mappings)
 
-
-## INTRODUCTION                             <a name="vim-safe-intro"/>
+<a name="vim-safe-intro"/>
+## INTRODUCTION
 
 VimSafe is a password keeper (password vault, password safe, ...) based on Vim.
 
@@ -20,15 +21,15 @@ If you want to help (and/or teach me your Vim wizardry), you are more than
 welcome.
 
 <a name="vim-safe-requirements"/>
-### REQUIREMENTS
+## REQUIREMENTS
 
   * Vim 7.4.401 or later is needed to use blowfish2.
   * Yankitute
     *Author*:  Idan Arye <https://github.com/someboddy/>
 
 
-<a name=""/>
-FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
+<a name="vim-safe-functionalities"/>
+## FUNCTIONALITIES
 
 * Encryption using internal blowfish2 Vim implementation
 * Auto open/close folded elements
@@ -47,8 +48,8 @@ FUNCTIONALITIES					     <a name="vim-safe-functionalities"/>
   - Internal VSRandom function using /dev/urandom (this is literally amazing)
   - external command pwgen
 
-<a name=""/>
-USAGE-EXAMPLE						 <a name="vim-safe-example"/>
+<a name="vim-safe-example"/>
+## USAGE-EXAMPLE
 
 The text in the vsafe file has to be formatted in this way:
 ```yml
@@ -86,7 +87,8 @@ folded and the passwords are all concealed with a *
  10 +--  User: "obama"---------------------------------
 ```
 
-COMMANDS						 <a name="vim-safe-commands"/>
+<a name="vim-safe-commands"/>
+## COMMANDS						 
 
 | Shortcut | Command / Description |
 |:---------|:----------------------|
@@ -100,7 +102,8 @@ To move back and forward between each field
 `<F8>`	*VPWGen*
 It generates a random password in the p register
 
-MAPPING							 <a name="vim-safe-mappings"/>
+<a name="vim-safe-mappings"/>
+## MAPPING
 
  * `<F1>` (WIP) Copy UserName into the system clipboard (require +xterm_clipboard)
  * `<F2>` (WIP) Copy Password into the system clipboard (require +xterm_clipboard)
