@@ -37,7 +37,7 @@ set cpo&vim
 " }}}1
 " {{{1 ==== VSafe Filetype settings ============================================
 setlocal viminfo=
-setlocal cm=blowfish
+setlocal cm=blowfish2
 setlocal noswapfile
 setlocal nobackup
 setlocal nowritebackup
