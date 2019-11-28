@@ -28,9 +28,8 @@
 " {{{1 ==== Initialization =====================================================
 if exists('b:did_ftplugin')
     finish
-else
-    let b:did_ftplugin = 1
 endif
+let b:did_ftplugin = 1
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -39,6 +38,7 @@ set cpo&vim
 setlocal viminfo=
 setlocal cm=blowfish2
 setlocal noswapfile
+setlocal noundofile
 setlocal nobackup
 setlocal nowritebackup
 setlocal bufhidden=wipe
@@ -56,7 +56,17 @@ setlocal concealcursor=""
 
 " VimSafe plugin installation dir
 let s:install_dir = expand('<sfile>:p:h')
-let s:vsafeTemplate = expand('<sfile>:p:h').'templates/vsafe.template'
+let s:vsafeTemplate = expand('<sfile>:p:h:h').'/templates/vsafe.template'
+echom 'file found: ' . s:vsafeTemplate
+" {{{1 ==== Create header ======================================================
+if filereadable(expand('%'))
+    " BufRead
+else
+    " BufNewFile
+    "0r s:vsafeTemplate
+    execute "0read " . fnameescape(s:vsafeTemplate)
+endif
+" }}}1
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
 " {{{2 ==== s:NewVSafeEntry ====================================================
@@ -151,13 +161,6 @@ function! VPWGen()
     redir END
 endfunction
 " }}}2 end of function VPWGEN ==================================================
-" }}}1
-" {{{1 ==== Create header ======================================================
-if has( 'autocmd' )
-    augroup VimSafe
-	autocmd BufNewFile *.vsafe silent! 0r vsafeTemplate
-    augroup END
-endif
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 " Motion
