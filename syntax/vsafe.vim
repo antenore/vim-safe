@@ -3,7 +3,7 @@
 " Maintainer: Antenore Gatta
 " Latest Revision: 20 Dec 2013
 " {{{ -=# General Options ======================================================
-if exists("b:current_syntax")
+if exists('b:current_syntax')
     finish
 endif
 
