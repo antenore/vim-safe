@@ -44,7 +44,7 @@ setlocal nowritebackup
 setlocal bufhidden=wipe
 setlocal textwidth=0
 setlocal foldmethod=indent
-setlocal undolevel = -1
+setlocal undolevels = -1
 "setlocal fdm=expr
 "setlocal foldexpr=VFold(v:lnum)
 setlocal foldclose=all
