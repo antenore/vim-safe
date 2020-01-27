@@ -95,7 +95,7 @@ function! VSafeNextField (back)
     if foldclosed('.') >= 1
         :foldopen
     endif
-    :insert
+    startinsert
 endfunction  " }}}2 ==== end of function VSafeNextField ========================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
