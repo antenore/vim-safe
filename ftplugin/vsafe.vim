@@ -100,7 +100,7 @@ function! VSafeNextField (back)
     endif
     if a:back !=# 'bck'
         startinsert
-    else
+    endif
 endfunction  " }}}2 ==== end of function VSafeNextField ========================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
