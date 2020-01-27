@@ -61,24 +61,24 @@ setlocal concealcursor=""
 function! s:NewVSafeEntry()
     " TODO: Replace with dictionary or list and loop
     call search('^	Notes: ".*"$', 'c')
-    let line=line('.')
+    let l:line=line('.')
     call inputsave()
-    let grname = input('Enter a GROUPNAME.SUBGROUPNAME: ')
+    let l:grname = input('Enter a GROUPNAME.SUBGROUPNAME: ')
     call inputrestore()
-    call append(line, grname . '::')
-    call append(line+1,'	User: "{USER}"')
-    call append(line+2,'	Password: "{PASSWORD}"')
-    call append(line+3,'	Url: ""')
-    call append(line+4,'	Notes: ""')
+    call append(l:line, l:grname . '::')
+    call append(l:line+1,'	User: "{USER}"')
+    call append(l:line+2,'	Password: "{PASSWORD}"')
+    call append(l:line+3,'	Url: ""')
+    call append(l:line+4,'	Notes: ""')
     :foldopen
 endfunction " }}}2 ==== end of function s:NewVSafeEntry ========================
 " {{{2 ==== s:PlaceCursor ======================================================
 function! s:PlaceCursor(pat)
-    let [pline, pcol] = searchpos(a:pat, 'cw')
-    let curr_line = getline(pline)
-    let replacement = substitute(curr_line, a:pat, '', '')
-    call setline('.', replacement)
-    call setpos('.', [0, pline, pcol+1, ''])
+    let [l:pline, l:pcol] = searchpos(a:pat, 'cw')
+    let l:curr_line = getline(l:pline)
+    let l:replacement = substitute(l:curr_line, a:pat, '', '')
+    call setline('.', l:replacement)
+    call setpos('.', [0, l:pline, l:pcol+1, ''])
     :foldopen
     :startinsert
 endfunction " }}}2 ==== end of function s:PlaceCursor ==========================
@@ -89,14 +89,13 @@ function! AddVSafeEntry()
 endfunction " }}}2 ==== end of function s:AddVSafeEntry ========================
 " {{{2 ==== VSafeNextField =====================================================
 function! VSafeNextField (direction)
-    :foldclose!
     if a:direction !=# 'back'
-        let bckflag = ''
+        let l:bckflag = ''
     else
-        let bckflag = 'b'
+        let l:bckflag = 'b'
     endif
-    call search('^\s\(\w*:\)\s".', bckflag. 'ew')
-    if foldlevel('.') > 0
+    call search('^\s\(\w*:\)\s".', l:bckflag. 'ew')
+    if foldclosed('.') != -1
         :foldopen
     endif
     if a:direction !=# 'back'
@@ -106,13 +105,13 @@ endfunction  " }}}2 ==== end of function VSafeNextField ========================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
     if getline(a:lnum) =~? '^\w.*::'
-        let vfoldlevel = 1
+        let l:vfoldlevel = 1
     elseif getline(a:lnum) =~? '^\t\w*:\s'
-        let vfoldlevel = 2
+        let l:vfoldlevel = 2
     else
-        let vfoldlevel = 0
+        let l:vfoldlevel = 0
     endif
-    return vfoldlevel
+    return l:vfoldlevel
 endfunction " }}}2 ==== end of function VFold ==================================
 " {{{2 ==== VSRandom ===========================================================
 " Accept 0 or more args ( the number of chars )
@@ -146,7 +145,7 @@ function! VPWGen()
         echomsg l:pw
     elseif filereadable('/bin/pwgen')
         let l:pwcmd = '/bin/pwgen -cnyB 16 1'
-        let l:pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
+        let l:pw = substitute(system(l:pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
     else
         echomsg 'ERR: neither /dev/urandom or pwgen have beed found'
     endif
@@ -179,7 +178,7 @@ nnoremap <silent><buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<C
 " }}}1
 " {{{1 ==== Auto Commands ======================================================
 " Encrypt the file if it's not already encrypted before to save the file
-if &key =~ '*'
+if &key =~? '*'
     augroup VimSafePreSave
         au!
         autocmd BufWritePre <buffer> :X
