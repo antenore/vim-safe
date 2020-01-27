@@ -1,2 +1,4 @@
 " Vim Filetype Detect File
-au BufRead,BufNewFile *.vsafe set filetype=vsafe
+augroup setfiletype
+    au BufRead,BufNewFile *.vsafe set filetype=vsafe
+augroup END

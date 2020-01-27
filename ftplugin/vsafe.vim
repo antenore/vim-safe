@@ -1,7 +1,7 @@
 "===============================================================================
 " FILE: vsafe.vim
 " AUTHOR: Antenore <antenore@simbiosi.org>
-" Last Modified: 21 Dec 2013
+" Last Modified: 1/22/2020
 " License: GPLv3 License {{{1===== License: GPLv3 License ======================
 " This file is part of VimSafe.
 "
@@ -32,18 +32,19 @@ else
     let b:did_ftplugin = 1
 endif
 
-let s:cpo_save = &cpo
-set cpo&vim
+let s:cpo_save = &cpoptions
+set cpoptions&vim
 " }}}1
 " {{{1 ==== VSafe Filetype settings ============================================
 setlocal viminfo=
-setlocal cm=blowfish2
+setlocal cryptmethod=blowfish2
 setlocal noswapfile
 setlocal nobackup
 setlocal nowritebackup
 setlocal bufhidden=wipe
-setlocal tw=0
-setlocal fdm=indent
+setlocal textwidth=0
+setlocal foldmethod=indent
+setlocal undolevels=-1
 "setlocal fdm=expr
 "setlocal foldexpr=VFold(v:lnum)
 setlocal foldclose=all
@@ -57,8 +58,8 @@ setlocal concealcursor=""
 " {{{1 ==== Functions Definitions ==============================================
 " {{{2 ==== s:NewVSafeEntry ====================================================
 function! s:NewVSafeEntry()
-    " TODO: Replace with distionary or list and loop
-    let line=line(".")
+    " TODO: Replace with dictionary or list and loop
+    let line=line('.')
     call inputsave()
     let grname = input('Enter a GROUPNAME.SUBGROUPNAME: ')
     call inputrestore()
@@ -85,7 +86,7 @@ function! AddVSafeEntry()
 endfunction " }}}2 ==== end of function s:AddVSafeEntry ========================
 " {{{2 ==== VSafeNextField =====================================================
 function! VSafeNextField (back)
-    if a:back != 'bck'
+    if a:back !=# 'bck'
         let bckflag = ''
     else
         let bckflag = 'b'
@@ -132,15 +133,15 @@ endfunction
 " }}}2 end of VSRandom
 " {{{2 ==== VPWGen =============================================================
 function! VPWGen()
-    if filereadable("/dev/urandom")
+    if filereadable('/dev/urandom')
         "let l:pwcmd = VSRandom(15)
         let l:pw = substitute(VSRandom(15), '[\]\|[[:cntrl:]]', '', 'g')
         echomsg l:pw
-    elseif filereadable("/bin/pwgen")
+    elseif filereadable('/bin/pwgen')
         let l:pwcmd = '/bin/pwgen -cnyB 16 1'
         let l:pw = substitute(system(pwcmd), '[\]\|[[:cntrl:]]', '', 'g')
     else
-        echomsg "ERR: neither /dev/urandom or pwgen have beed found"
+        echomsg 'ERR: neither /dev/urandom or pwgen have beed found'
     endif
     redir @p>
     echomsg l:pw
@@ -169,11 +170,11 @@ map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
 if exists('b:undo_ftplugin')
-    let b:undo_ftplugin .= "|setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<"
+    let b:undo_ftplugin .= '|setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<'
 else
-    let b:undo_ftplugin = "setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<"
+    let b:undo_ftplugin = 'setl noswapfile< nobackup< nowritebackup< bufhidden< tw< fdm< foldclose< colorcolumn<'
 endif
 
-let &cpo = s:cpo_save
+let &cpoptions = s:cpo_save
 unlet s:cpo_save
 " }}}1
