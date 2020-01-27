@@ -57,13 +57,20 @@ setlocal concealcursor=""
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
 " {{{2 ==== s:NewVSafeEntry ====================================================
+
 function! s:NewVSafeEntry()
     " TODO: Replace with dictionary or list and loop
     let line=line('.')
     call inputsave()
     let grname = input('Enter a GROUPNAME.SUBGROUPNAME: ')
     call inputrestore()
-    call append(line, grname . '::')
+    if line('.') == 1 && col('.') == 1
+        call append(0, grname . '::')
+    elseif line('.') == 1 && col('.') > 1
+        call append(line - 1, grname . '::')
+    else
+        call append(line, grname . '::')
+    endif
     call append(line+1,'	User: "{USER}"')
     call append(line+2,'	Password: "{PASSWORD}"')
     call append(line+3,'	Url: ""')
@@ -95,7 +102,9 @@ function! VSafeNextField (back)
     if foldclosed('.') >= 1
         :foldopen
     endif
-    startinsert
+    if a:back !=# 'bck'
+        startinsert
+    else
 endfunction  " }}}2 ==== end of function VSafeNextField ========================
 " {{{2 ==== VFold ==============================================================
 function! VFold (lnum)
@@ -155,6 +164,7 @@ endfunction
 nnoremap <silent><buffer> <Tab> :call VSafeNextField('fwd')<CR>
 inoremap <silent><buffer> <Tab> <Esc>:call VSafeNextField('fwd')<CR>
 nnoremap <silent><buffer> <S-Tab> :call VSafeNextField('bck')<CR>
+inoremap <silent><buffer> <S-Tab> <Esc>:call VSafeNextField('bck')<CR>
 inoremap <buffer> <CR> <Esc>
 " Copy into the system clipboard the old way
 "map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
