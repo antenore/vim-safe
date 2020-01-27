@@ -60,17 +60,12 @@ setlocal concealcursor=""
 
 function! s:NewVSafeEntry()
     " TODO: Replace with dictionary or list and loop
+    call search('^	Note ".*"$', 'c')
     let line=line('.')
     call inputsave()
     let grname = input('Enter a GROUPNAME.SUBGROUPNAME: ')
     call inputrestore()
-    if line('.') == 1 && col('.') == 1
-        call append(0, grname . '::')
-    elseif line('.') == 1 && col('.') > 1
-        call append(line - 1, grname . '::')
-    else
-        call append(line, grname . '::')
-    endif
+    call append(line, grname . '::')
     call append(line+1,'	User: "{USER}"')
     call append(line+2,'	Password: "{PASSWORD}"')
     call append(line+3,'	Url: ""')
