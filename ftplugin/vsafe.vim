@@ -151,22 +151,22 @@ endfunction
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 " Motion
-map <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
-map <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
-imap <buffer> <CR> <Esc>
+nnoremap <silent> <buffer> <Tab> :call VSafeNextField('fwd')<CR>
+nnoremap <silent> <buffer> <S-Tab> :call VSafeNextField('bck')<CR>
+inoremap <buffer> <CR> <Esc>
 " Copy into the system clipboard the old way
 "map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
 "map <silent> <buffer> <F2> :/^\(\sPassword:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
 ""map <silent> <buffer> <F2> :/^\sPassword:\s"\(\zs.\{-}\ze\)"$/y p<CR>let @+ = @p<CR>
 " Copy to clipboard using Yankitude
-map <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
-map <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
+nnoremap <silent> <buffer> <F1> 0:Yankitute+/User:\s"\(\zs.\{-}\ze\)"<CR>
+nnoremap <silent> <buffer> <F2> 0:Yankitute+/Password:\s"\(\zs.\{-}\ze\)"<CR>
 " Add new entry
-map <silent> <buffer> <F4> <Esc>:call AddVSafeEntry()<CR>
+nnoremap <silent> <buffer> <F4> <Esc>:call AddVSafeEntry()<CR>
 " Password: call VPWGen and pasting back it's content; clean again the register
 nnoremap <F8> :call VPWGen()<CR>"ppJxqpq
 " This is to sort the headers leaving untouched the content
-map <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
+nnoremap <silent> <buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " }}}1
 " {{{1 ==== Restore settings ===================================================
 if exists('b:undo_ftplugin')
