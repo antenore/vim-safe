@@ -60,7 +60,7 @@ setlocal concealcursor=""
 
 function! s:NewVSafeEntry()
     " TODO: Replace with dictionary or list and loop
-    call search('^	Note ".*"$', 'c')
+    call search('^	Notes: ".*"$', 'c')
     let line=line('.')
     call inputsave()
     let grname = input('Enter a GROUPNAME.SUBGROUPNAME: ')
@@ -69,7 +69,7 @@ function! s:NewVSafeEntry()
     call append(line+1,'	User: "{USER}"')
     call append(line+2,'	Password: "{PASSWORD}"')
     call append(line+3,'	Url: ""')
-    call append(line+4,'	Note ""')
+    call append(line+4,'	Notes: ""')
     :foldopen
 endfunction " }}}2 ==== end of function s:NewVSafeEntry ========================
 " {{{2 ==== s:PlaceCursor ======================================================
@@ -89,14 +89,16 @@ function! AddVSafeEntry()
 endfunction " }}}2 ==== end of function s:AddVSafeEntry ========================
 " {{{2 ==== VSafeNextField =====================================================
 function! VSafeNextField (direction)
-    :foldclose
+    :foldclose!
     if a:direction !=# 'back'
         let bckflag = ''
     else
         let bckflag = 'b'
     endif
     call search('^\s\(\w*:\)\s".', bckflag. 'ew')
-    :foldopen
+    if foldlevel('.') > 0
+        :foldopen
+    endif
     if a:direction !=# 'back'
         startinsert
     endif
@@ -174,6 +176,15 @@ nnoremap <silent><buffer> <F4> <Esc>:call AddVSafeEntry()<CR>
 nnoremap <F8> :call VPWGen()<CR>"ppJxqpq
 " This is to sort the headers leaving untouched the content
 nnoremap <silent><buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
+" }}}1
+" {{{1 ==== Auto Commands ======================================================
+" Encrypt the file if it's not already encrypted before to save the file
+if &key =~ '*'
+    augroup VimSafePreSave
+        au!
+        autocmd BufWritePre <buffer> :X
+    augroup END
+endif
 " }}}1
 " {{{1 ==== Restore settings ===================================================
 if exists('b:undo_ftplugin')
