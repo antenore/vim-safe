@@ -88,17 +88,16 @@ function! AddVSafeEntry()
     call s:PlaceCursor('{USER}')
 endfunction " }}}2 ==== end of function s:AddVSafeEntry ========================
 " {{{2 ==== VSafeNextField =====================================================
-function! VSafeNextField (back)
-    if a:back !=# 'bck'
+function! VSafeNextField (direction)
+    :foldclose
+    if a:direction !=# 'back'
         let bckflag = ''
     else
         let bckflag = 'b'
     endif
     call search('^\s\(\w*:\)\s".', bckflag. 'ew')
-    if foldclosed('.') >= 1
-        :foldopen
-    endif
-    if a:back !=# 'bck'
+    :foldopen
+    if a:direction !=# 'back'
         startinsert
     endif
 endfunction  " }}}2 ==== end of function VSafeNextField ========================
@@ -157,10 +156,10 @@ endfunction
 " }}}1
 " {{{1 ==== Mappings ===========================================================
 " Motion
-nnoremap <silent><buffer> <Tab> :call VSafeNextField('fwd')<CR>
-inoremap <silent><buffer> <Tab> <Esc>:call VSafeNextField('fwd')<CR>
-nnoremap <silent><buffer> <S-Tab> :call VSafeNextField('bck')<CR>
-inoremap <silent><buffer> <S-Tab> <Esc>:call VSafeNextField('bck')<CR>
+nnoremap <silent><buffer> <Tab> :call VSafeNextField('forward')<CR>
+inoremap <silent><buffer> <Tab> <Esc>:call VSafeNextField('forward')<CR>
+nnoremap <silent><buffer> <S-Tab> :call VSafeNextField('back')<CR>
+inoremap <silent><buffer> <S-Tab> <Esc>:call VSafeNextField('back')<CR>
 inoremap <buffer> <CR> <Esc>
 " Copy into the system clipboard the old way
 "map <silent> <buffer> <F1> :/^\(\sUser:\s"\zs[^"]\+\ze"\n\)\{0}/y+<CR>
