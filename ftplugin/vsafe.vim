@@ -177,12 +177,11 @@ nnoremap <F8> :call VPWGen()<CR>"ppJxqpq
 nnoremap <silent><buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<CR>
 " }}}1
 " {{{1 ==== Auto Commands ======================================================
+if !filereadable(expand('%'))
+	call s:NewVSafeEntry()
+endif
 " Encrypt the file if it's not already encrypted before to save the file
 if &key !~? '.\+'
-    augroup VimSafeNew
-        au!
-        autocmd BufNewFile :call s:NewVSafeEntry()
-    augroup END
     augroup VimSafePreSave
         au!
         autocmd BufWritePre *.vsafe :X
