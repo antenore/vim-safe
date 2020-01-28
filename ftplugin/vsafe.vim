@@ -70,7 +70,9 @@ function! s:NewVSafeEntry()
     call append(l:line+2,'	Password: "{PASSWORD}"')
     call append(l:line+3,'	Url: ""')
     call append(l:line+4,'	Notes: ""')
-    :foldopen
+    if foldclosed('.') != -1
+	:foldopen
+    endif
 endfunction " }}}2 ==== end of function s:NewVSafeEntry ========================
 " {{{2 ==== s:PlaceCursor ======================================================
 function! s:PlaceCursor(pat)
