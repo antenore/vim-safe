@@ -56,8 +56,48 @@ setlocal conceallevel=2
 setlocal concealcursor=""
 " }}}1
 " {{{1 ==== Functions Definitions ==============================================
-" {{{2 ==== s:NewVSafeEntry ====================================================
+" {{{2 ==== s:VSafeSplash ======================================================
+function! s:VSafeSplash()
 
+  "Create a new unnamed buffer to display our splash screen inside of.
+  enew
+
+  " Set some options for this buffer to make sure that does not act like a
+  " normal winodw.
+  setlocal
+    \ bufhidden=wipe
+    \ buftype=nofile
+    \ nobuflisted
+    \ nocursorcolumn
+    \ nocursorline
+    \ nolist
+    \ nonumber
+    \ noswapfile
+    \ norelativenumber
+
+  " Our message goes here. Mine is simple.
+  "call append('$', "hello")
+  exec ':r !echo'
+
+  let l:splash_file=expand('%:p:h:h') . '/data/icons/vim-safe_ASCII.txt'
+  if filereadable(glob(l:splash_file))
+    :read glob(l:splash_file)
+  endif
+
+
+  " When we are done writing out message set the buffer to readonly.
+  setlocal
+    \ nomodifiable
+    \ nomodified
+
+  " Just like with the default start page, when we switch to insert mode
+  " a new buffer should be opened which we can then later save.
+  nnoremap <buffer><silent> e :enew<CR>
+  nnoremap <buffer><silent> i :enew <bar> startinsert<CR>
+  nnoremap <buffer><silent> o :enew <bar> startinsert<CR>
+
+endfun
+" {{{2 ==== s:VSafeSplash ======================================================
 function! s:NewVSafeEntry()
     " TODO: Replace with dictionary or list and loop
     call search('^	Notes: ".*"$', 'c')
@@ -180,6 +220,7 @@ nnoremap <silent><buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<C
 " }}}1
 " {{{1 ==== Auto Commands ======================================================
 if !filereadable(expand('%'))
+        autocmd VimEnter * call VSafeSplash()
 	call s:NewVSafeEntry()
 endif
 " Encrypt the file if it's not already encrypted before to save the file
