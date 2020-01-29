@@ -220,7 +220,7 @@ nnoremap <silent><buffer> <F5> :%s/\(\n\t\)/\2!<CR>:sor i<CR>jddGp:%s/!/\r\t/g<C
 " }}}1
 " {{{1 ==== Auto Commands ======================================================
 if !filereadable(expand('%'))
-        autocmd VimEnter * call VSafeSplash()
+        autocmd VimEnter * call s:VSafeSplash()
 	call s:NewVSafeEntry()
 endif
 " Encrypt the file if it's not already encrypted before to save the file
