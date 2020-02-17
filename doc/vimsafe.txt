@@ -2,7 +2,7 @@
 
 *VimSafe* - A VIM Password Safe (Vault) like tool
 
-Version: 8.0
+Version: 1.0
 Author : Antenore <antenore@simbiosi.org>
 License: GPLv3  {{{
     VimSafe an encrypted, text-only, password keeper
