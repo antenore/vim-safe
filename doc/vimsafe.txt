@@ -1,4 +1,4 @@
-*vimsafe.txt*	VIM Password Safe (Vault) like tool    Modified: 2014 May 16
+*vimsafe.txt*	VIM Password Safe (Vault) like tool    Modified: 2020 Feb 17
 
 *VimSafe* - A VIM Password Safe (Vault) like tool
 
